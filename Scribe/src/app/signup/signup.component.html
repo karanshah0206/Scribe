@@ -14,19 +14,19 @@
                                     <input type="text" placeholder="Last Name" name="lastname" class="form-control" required [formControl]="signUpForm.controls['lastName']">
                                 </div>
                             </div>
-                            <div class="alert alert-danger">First & Last Name Required.</div>
+                            <div class="alert alert-danger" *ngIf="(signUpForm.controls['firstName'].touched && signUpForm.controls['firstName'].invalid) || (signUpForm.controls['lastName'].touched && signUpForm.controls['lastName'].invalid)">First & Last Name Required.</div>
                             <div class="form-group">
                                 <input type="email" placeholder="Email" name="email" class="form-control" required [formControl]="signUpForm.controls['email']">
                             </div>
-                            <div class="alert alert-danger">Valid Email Required.</div>
+                            <div class="alert alert-danger" *ngIf="signUpForm.controls['email'].touched && signUpForm.controls['email'].invalid">Valid Email Required.</div>
                             <div class="form-group">
                                 <input type="password" placeholder="Password" name="password" class="form-control" required [formControl]="signUpForm.controls['password']">
                             </div>
-                            <div class="alert alert-danger">Password With At Least 8 Characters Required.</div>
+                            <div class="alert alert-danger" *ngIf="signUpForm.controls['password'].touched && signUpForm.controls['password'].invalid">Password With At Least 8 Characters Required.</div>
                             <div class="form-group">
                                 <input type="password" placeholder="Verify Password" name="verPass" class="form-control" required [formControl]="signUpForm.controls['verPass']">
                             </div>
-                            <div class="alert alert-danger">Passwords Must Match.</div>
+                            <div class="alert alert-danger" *ngIf="signUpForm.controls['verPass'].touched && signUpForm.controls['verPass'].invalid">Passwords Must Match.</div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-warning btn-block" [disabled]="signUpForm.invalid">Sign Up</button>
                             </div>
