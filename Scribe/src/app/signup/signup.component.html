@@ -5,30 +5,30 @@
                 <div class="card-body">
                     <div class="card-title text-center"><h4>Sign Up</h4></div>
                     <div class="card-text">
-                        <form>
+                        <form [formGroup]="signUpForm" (ngSubmit)="signUpHandle(signUpForm)">
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
-                                    <input type="text" placeholder="First Name" name="firstName" class="form-control" required>
+                                    <input type="text" placeholder="First Name" name="firstName" class="form-control" required [formControl]="signUpForm.controls['firstName']">
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input type="text" placeholder="Last Name" name="lastname" class="form-control" required>
+                                    <input type="text" placeholder="Last Name" name="lastname" class="form-control" required [formControl]="signUpForm.controls['lastName']">
                                 </div>
                             </div>
                             <div class="alert alert-danger">First & Last Name Required.</div>
                             <div class="form-group">
-                                <input type="email" placeholder="Email" name="email" class="form-control" required>
+                                <input type="email" placeholder="Email" name="email" class="form-control" required [formControl]="signUpForm.controls['email']">
                             </div>
                             <div class="alert alert-danger">Valid Email Required.</div>
                             <div class="form-group">
-                                <input type="password" placeholder="Password" name="password" class="form-control" required>
+                                <input type="password" placeholder="Password" name="password" class="form-control" required [formControl]="signUpForm.controls['password']">
                             </div>
                             <div class="alert alert-danger">Password With At Least 8 Characters Required.</div>
                             <div class="form-group">
-                                <input type="password" placeholder="Verify Password" name="verPassword" class="form-control" required>
+                                <input type="password" placeholder="Verify Password" name="verPass" class="form-control" required [formControl]="signUpForm.controls['verPass']">
                             </div>
                             <div class="alert alert-danger">Passwords Must Match.</div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-warning btn-block">Sign Up</button>
+                                <button type="submit" class="btn btn-warning btn-block" [disabled]="signUpForm.invalid">Sign Up</button>
                             </div>
                         </form>
                     </div>
