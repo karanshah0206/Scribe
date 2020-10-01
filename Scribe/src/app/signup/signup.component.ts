@@ -16,6 +16,8 @@ export class SignupComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       verPass: ['', [Validators.required]]
+    },{
+      validators: this.passwordVerifier("password", "verPass")
     });
   }
 
@@ -24,6 +26,15 @@ export class SignupComponent implements OnInit {
 
   signUpHandle(form) {
     console.log(form.value);
+  }
+
+  passwordVerifier(password: string, verPass: string) {
+    return (group: FormGroup) => {
+      let password = group.controls['password'];
+      let verPass = group.controls['verPass'];
+      if (password.value == verPass.value) { return; }
+      else { verPass.setErrors({notEqualToPassword: true}); }
+    }
   }
 
 }
