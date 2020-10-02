@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +10,7 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  userError: any;
 
   constructor(public formBuilder: FormBuilder) {
     this.loginForm = this.formBuilder.group({
@@ -20,7 +23,10 @@ export class LoginComponent implements OnInit {
   }
 
   loginHandle(form) {
-    console.log(form.value);
+    firebase.auth().signInWithEmailAndPassword(form.value.email, form.value.password).then((response) => {
+      console.log(response); // When Routing is created, Reroute to Home.
+    }).catch((error) => {
+      this.userError = error.message;
+    });
   }
-
 }
