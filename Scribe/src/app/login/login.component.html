@@ -5,15 +5,17 @@
                 <div class="card-body">
                     <div class="card-title text-center"><h4>Login</h4></div>
                     <div class="card-text">
-                        <form>
+                        <form [formGroup]="loginForm" (ngSubmit)="loginHandle(loginForm)">
                             <div class="form-group">
-                                <input type="email" placeholder="Registered Email" name="email" class="form-control" required>
+                                <input type="email" placeholder="Registered Email" name="email" class="form-control" required [formControl]="loginForm.controls['email']">
                             </div>
+                            <div class="alert alert-danger" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">Valid Email Required.</div>
                             <div class="form-group">
-                                <input type="Password" placeholder="Password" name="password" class="form-control" required>
+                                <input type="Password" placeholder="Password" name="password" class="form-control" required [formControl]="loginForm.controls['password']">
                             </div>
+                            <div class="alert alert-danger" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">Password Required.</div>
                             <div class="text-center">
-                                <button class="btn btn-warning btn-block">Login</button>
+                                <button type="submit" class="btn btn-warning btn-block" [disabled]="loginForm.invalid">Login</button>
                             </div>
                         </form>
                     </div>
