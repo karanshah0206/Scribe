@@ -10,6 +10,7 @@ import 'firebase/auth';
 })
 export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
+  userError: any;
 
   constructor(public formBuilder: FormBuilder) {
     this.signUpForm = this.formBuilder.group({
@@ -31,14 +32,15 @@ export class SignupComponent implements OnInit {
     let password: string = form.value.password;
 
     firebase.auth().createUserWithEmailAndPassword(email, password).then((response) => {
-      console.log(response);
       let profNum = Math.floor(Math.random() * 1000);
       response.user.updateProfile({
         displayName: form.value.firstName + " " + form.value.lastName,
         photoURL: "https://api.adorable.io/avatars/" + profNum
+      }).then(() => {
+        console.log("Sign Up Successful"); // When Routers Created, Reroute Home.
       });
     }).catch((error) => {
-      console.log(error);
+      this.userError = error.message;
     });
   }
 
