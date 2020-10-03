@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './app-routing.module';
 
 firebase.initializeApp({
   apiKey: "AIzaSyAoLfBW5ggxhuv83EiOflsX5_C27aYNNDw",
@@ -30,7 +31,8 @@ firebase.initializeApp({
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
