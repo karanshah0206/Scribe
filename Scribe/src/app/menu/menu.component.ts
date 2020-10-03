@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -11,7 +12,7 @@ export class MenuComponent implements OnInit {
   loggedIn: boolean = false;
   user: any;
 
-  constructor() {
+  constructor(public router: Router) {
     this.user = firebase.auth().currentUser;
     if (this.user) { this.loggedIn = true; }
     else { this.loggedIn = false; }
@@ -25,6 +26,8 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logout() { firebase.auth().signOut(); }
+  logout() {
+    firebase.auth().signOut().then(() => { this.router.navigate(['/home']) });
+  }
 
 }

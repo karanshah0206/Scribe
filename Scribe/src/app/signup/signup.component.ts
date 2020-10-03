@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -12,7 +13,7 @@ export class SignupComponent implements OnInit {
   signUpForm: FormGroup;
   userError: any;
 
-  constructor(public formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder, public router: Router) {
     this.signUpForm = this.formBuilder.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
@@ -37,7 +38,7 @@ export class SignupComponent implements OnInit {
         displayName: form.value.firstName + " " + form.value.lastName,
         photoURL: "https://api.adorable.io/avatars/" + profNum
       }).then(() => {
-        console.log("Sign Up Successful"); // When Routers Created, Reroute Home.
+        this.router.navigate(['/feed']);
       });
     }).catch((error) => {
       this.userError = error.message;
