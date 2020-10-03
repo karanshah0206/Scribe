@@ -3,19 +3,25 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dropdown" aria-controls="dropdown" aria-expanded="false" aria-label="Navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="dropdown">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse">
-                <a href="#" class="nav-link">Link 1</a>
+            <li class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse" *ngIf="!loggedIn">
+                <a routerLink="/home" class="nav-link">Home</a>
             </li>
-            <li class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse">
-                <a href="#" class="nav-link">Link 2</a>
+            <li class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse" *ngIf="loggedIn">
+                <a routerLink="/feed" class="nav-link">Home</a>
             </li>
-            <li class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse">
-                <a href="#" class="nav-link">Link 3</a>
+            <li class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse" *ngIf="loggedIn">
+                <a routerLink="/" class="nav-link">Profile</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-link right" routerLinkActive="active" data-target="collapse" data-target=".navbar-collapse">
-                <button class="btn btn-outline-light px-5" href="#">Link 4</button>
+            <li class="nav-link right" routerLinkActive="active" data-target="collapse" data-target=".navbar-collapse" *ngIf="!loggedIn">
+                <button class="btn btn-outline-light px-5" routerLink="/login">Login</button>
+            </li>
+            <li class="nav-link right" routerLinkActive="active" data-target="collapse" data-target=".navbar-collapse" *ngIf="!loggedIn">
+                <button class="btn btn-outline-light px-5" routerLink="/signup">Sign Up</button>
+            </li>
+            <li class="nav-link right" routerLinkActive="active" data-target="collapse" data-target=".navbar-collapse" *ngIf="loggedIn">
+                <button class="btn btn-outline-light px-5" routerLink="/" (click)="logout()">Logout</button>
             </li>
         </ul>
     </div>
