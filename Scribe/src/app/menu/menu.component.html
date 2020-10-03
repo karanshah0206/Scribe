@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a href="#" class="navbar-brand"><img src="../../assets/Scribe-Logo.png"></a>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand"><img src="../../assets/Scribe-Logo.png" width="95%"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dropdown" aria-controls="dropdown" aria-expanded="false" aria-label="Navigation"><span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="dropdown">
         <ul class="navbar-nav mr-auto">
@@ -14,14 +14,14 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-link right" routerLinkActive="active" data-target="collapse" data-target=".navbar-collapse" *ngIf="!loggedIn">
-                <button class="btn btn-outline-light px-5" routerLink="/login">Login</button>
+            <li class="nav-link right" data-target="collapse" data-target=".navbar-collapse" *ngIf="!loggedIn">
+                <a class="btn btn-outline-dark px-5" routerLinkActive="active" routerLink="/login">Login</a>
             </li>
-            <li class="nav-link right" routerLinkActive="active" data-target="collapse" data-target=".navbar-collapse" *ngIf="!loggedIn">
-                <button class="btn btn-outline-light px-5" routerLink="/signup">Sign Up</button>
+            <li class="nav-link right" data-target="collapse" data-target=".navbar-collapse" *ngIf="!loggedIn">
+                <a class="btn btn-outline-dark px-5" routerLinkActive="active" routerLink="/signup">Sign Up</a>
             </li>
-            <li class="nav-link right" routerLinkActive="active" data-target="collapse" data-target=".navbar-collapse" *ngIf="loggedIn">
-                <button class="btn btn-outline-light px-5" routerLink="/" (click)="logout()">Logout</button>
+            <li class="nav-link right" data-target="collapse" data-target=".navbar-collapse" *ngIf="loggedIn">
+                <a class="btn btn-outline-dark px-5" (click)="logout()">Logout</a>
             </li>
         </ul>
     </div>

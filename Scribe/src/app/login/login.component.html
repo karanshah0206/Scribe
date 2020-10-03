@@ -1,6 +1,7 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-8 offset-sm-2">
+    <div class="row background">
+        <div class="col-lg-6 d-none d-lg-block background-image"></div>
+        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-0 p-5">
             <div class="card border-0">
                 <div class="card-body">
                     <div class="card-title text-center"><h4>Login</h4></div>
@@ -9,15 +10,18 @@
                             <div class="form-group">
                                 <input type="email" placeholder="Registered Email" name="email" class="form-control" required [formControl]="loginForm.controls['email']">
                             </div>
-                            <div class="alert alert-danger" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">Valid Email Required.</div>
+                            <div class="alert alert-primary" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">Valid Email Required.</div>
                             <div class="form-group">
                                 <input type="Password" placeholder="Password" name="password" class="form-control" required [formControl]="loginForm.controls['password']">
                             </div>
-                            <div class="alert alert-danger" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">Password Required.</div>
+                            <div class="alert alert-primary" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">Password Required.</div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-warning btn-block" [disabled]="loginForm.invalid">Login</button>
+                                <button type="submit" class="btn btn-warning btn-block" [disabled]="loginForm.invalid">Get In!</button>
                             </div>
                         </form>
+                        <div class="mt-3">
+                            Don't have an account? <a routerLink="/signup">Sign Up</a>
+                        </div>
                     </div>
                 </div>
             </div>
