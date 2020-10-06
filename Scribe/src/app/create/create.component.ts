@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
@@ -10,6 +10,7 @@ import 'firebase/auth';
 })
 
 export class CreateComponent implements OnInit {
+  @Output('postCreated') postCreated = new EventEmitter();
   title: string = "";
   content: string = "";
 
@@ -27,7 +28,14 @@ export class CreateComponent implements OnInit {
       content: this.content,
       author: firebase.auth().currentUser.uid,
       time: firebase.firestore.FieldValue.serverTimestamp()
-    }).then((data) => {console.log(data)}).catch((error) => {console.error(error)});
+    }).then(() => {
+      this.postCreated.emit();
+      this.title = "";
+      this.content = "";
+    }).catch((error) => {
+      console.error(error);
+      alert("An error occured while publishing your Scribe.");
+    });
   }
 
 }
