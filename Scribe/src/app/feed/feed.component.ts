@@ -22,7 +22,7 @@ export class FeedComponent implements OnInit {
   }
 
   getPosts() {
-    firebase.firestore().collection("posts").get().then((querySnapshot) => {
+    firebase.firestore().collection("posts").orderBy("time", "desc").get().then((querySnapshot) => {
       this.posts = querySnapshot.docs;
     }).catch((error) => {
       console.error(error);
