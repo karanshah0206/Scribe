@@ -10,9 +10,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewComponent implements OnInit {
   post: any = {};
+  postId: string = "";
 
   constructor(public activatedRoute: ActivatedRoute, public ngZone: NgZone) {
     let postId = this.activatedRoute.snapshot.paramMap.get("postId");
+    this.postId = postId;
     firebase.firestore().settings({ timestampsInSnapshots: true });
     firebase.firestore().collection("posts").doc(postId).get().then((docSnapshot) => {
       this.ngZone.run(() => {
