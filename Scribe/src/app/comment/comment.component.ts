@@ -22,10 +22,16 @@ export class CommentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getComments();
   }
 
   getComments() {
-
+    this.comments = [];
+    firebase.firestore().collection("comments").where("post", "==", this.postId).orderBy("time", "desc").get().then((data) => {
+      data.forEach((commentRef) => {
+        this.comments.push(commentRef.data());
+      });
+    });
   }
 
   postComment() {
@@ -39,7 +45,6 @@ export class CommentComponent implements OnInit {
       author: firebase.auth().currentUser.displayName,
       time: firebase.firestore.FieldValue.serverTimestamp()
     }).then((data) => {
-      console.log("Comment posted successfully.");
       this.getComments();
       this.comment = "";
     }).catch((error) => {
