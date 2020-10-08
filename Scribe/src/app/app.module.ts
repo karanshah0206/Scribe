@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { FeedComponent } from './feed/feed.component';
 import { CreateComponent } from './create/create.component';
 import { from } from 'rxjs';
+import { PostComponent } from './post/post.component';
 
 firebase.initializeApp({
   apiKey: "AIzaSyAoLfBW5ggxhuv83EiOflsX5_C27aYNNDw",
@@ -38,7 +39,8 @@ firebase.initializeApp({
     LoginComponent,
     HomeComponent,
     FeedComponent,
-    CreateComponent
+    CreateComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
