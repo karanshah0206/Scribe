@@ -1,11 +1,11 @@
 <div class="card text-blank mt-3">
     <div class="card-body">
         <div class="card-title"><h2>{{ postData.title }}</h2></div>
-        <div class="card-text">{{ post.content }}</div>
+        <div class="card-text">{{ postData.content }}</div>
     </div>
     <div class="card-footer text-muted">
-        Scribed on {{ postData.created | date: 'MMM dd, yyyy' }}
+        Scribed on {{ postData.time.toDate() | date }}
         <button class="btn btn-danger card-link btn-sm float-right" *ngIf="user && user.uid == postData.author" (click)="remove()">Remove Scribe</button>
+        <a class="text-muted float-right" *ngIf="(user && postData.author != user.uid) || !user" routerLink="/profile/{{ postData.author }}">View Scriber's Profile</a>
     </div>
-    <a class="card-footer text-muted" *ngIf="(user && postData.author != user.uid) || !user" routerLink="/profile/{{ postData.author }}">View Scriber's Profile</a>
 </div>

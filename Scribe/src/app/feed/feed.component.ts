@@ -35,4 +35,9 @@ export class FeedComponent implements OnInit {
     this.getPosts();
   }
 
+  onRemove() {
+    this.posts = [];
+    this.getPosts();
+  }
+
 }
