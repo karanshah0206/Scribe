@@ -21,6 +21,7 @@ import { from } from 'rxjs';
 import { PostComponent } from './post/post.component';
 import { ViewComponent } from './view/view.component';
 import { CommentComponent } from './comment/comment.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 firebase.initializeApp({
   apiKey: "AIzaSyAoLfBW5ggxhuv83EiOflsX5_C27aYNNDw",
@@ -44,7 +45,8 @@ firebase.initializeApp({
     CreateComponent,
     PostComponent,
     ViewComponent,
-    CommentComponent
+    CommentComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,

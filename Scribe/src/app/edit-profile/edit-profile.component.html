@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="row mt-5">
+        <div class="offset-sm-1 col-sm-10">
+            <div class="card text-blank bg-light">
+                <div class="card-body">
+                    <div class="card-title"><h1>Profile</h1></div>
+                    <div class="card-text">
+                        <div class="row">
+                            <div class="col-lg-4 mb-5 mb-lg-0">
+                                <img [src]="user.photoUrl" width="256" height="256" class="img-circle">
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" placeholder="First Name" [(ngModel)]="user.firstName">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" placeholder="Last Name" [(ngModel)]="user.lastName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" [(ngModel)]="user.email" readonly disabled placeholder="Email">
+                                    <small class="text-info">Email cannot be updated.</small>
+                                </div>
+                                <div class="form-group">
+                                    <textarea style="resize: none;" class="form-control" rows="4" placeholder="Add your bio & let other Scribers know something cool about you!" [(ngModel)]="user.bio"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="4" placeholder="Let Scribers know your interests!" [(ngModel)]="user.interests" style="resize: none;"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="4" placeholder="Let Scribers know your hobbies!" [(ngModel)]="user.hobbies" style="resize: none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success float-right" (click)="updateProfile()">Update Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

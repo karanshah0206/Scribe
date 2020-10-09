@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { FeedComponent } from './feed/feed.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -16,6 +17,8 @@ const routes: Routes = [{
   path: 'signup', component: SignupComponent
 },{
   path: 'feed', component: FeedComponent
+},{
+  path: 'edit/:id', component: EditProfileComponent
 },{
   path: 'view/:postId', component: ViewComponent
 },{
