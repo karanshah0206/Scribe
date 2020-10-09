@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -10,9 +11,8 @@ import 'firebase/firestore';
 })
 export class EditProfileComponent implements OnInit {
   user: any = {};
-  message: string = "";
 
-  constructor() {
+  constructor(public router: Router) {
     this.getProfile();
   }
 
@@ -30,6 +30,28 @@ export class EditProfileComponent implements OnInit {
     });
   }
 
-  updateProfile() {}
+  updateProfile() {
+    firebase.auth().currentUser.updateProfile({
+      displayName: this.user.firstName + " " + this.user.lastName,
+      photoURL: this.user.photoUrl
+    }).then(() => {
+      let userId = firebase.auth().currentUser.uid;
+      firebase.firestore().collection("users").doc(userId).update({
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        hobbies: this.user.hobbies,
+        interests: this.user.interests,
+        bio: this.user.bio
+      }).then(() => {
+        this.router.navigate(['/profile/' + userId]);
+      }).catch((error) => {
+        console.error(error);
+        alert("An error occured while updating your profile.");
+      });
+    }).catch((error) => {
+      console.error(error);
+      alert("An error occured while updating your profile.");
+    });
+  }
 
 }
