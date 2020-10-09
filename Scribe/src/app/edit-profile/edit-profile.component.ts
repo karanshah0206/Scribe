@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
@@ -12,7 +12,10 @@ import 'firebase/firestore';
 export class EditProfileComponent implements OnInit {
   user: any = {};
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public activatedRoute: ActivatedRoute) {
+    if (firebase.auth().currentUser.uid != this.activatedRoute.snapshot.paramMap.get("id")) {
+      this.router.navigate(['/feed']);
+    }
     this.getProfile();
   }
 
