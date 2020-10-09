@@ -38,7 +38,19 @@ export class SignupComponent implements OnInit {
         displayName: form.value.firstName + " " + form.value.lastName,
         photoURL: "https://api.adorable.io/avatars/" + profNum
       }).then(() => {
-        this.router.navigate(['/feed']);
+        firebase.firestore().collection("users").doc(response.user.uid).set({
+          firstName: form.value.firstName,
+          lastName: form.value.lastName,
+          email: email,
+          photoUrl: response.user.photoURL,
+          interests: "",
+          bio: "",
+          hobbies: ""
+        }).then(() => {
+          this.router.navigate(['/feed']);
+        }).catch((error) => {
+          this.userError = error;
+        });
       });
     }).catch((error) => {
       this.userError = error.message;
