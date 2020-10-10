@@ -10,7 +10,7 @@
                 <a routerLink="/feed" class="nav-link">Feed</a>
             </li>
             <li class="nav-item" routerLinkActive="active" data-toggle="collapse" data-target=".navbar-collapse" *ngIf="loggedIn">
-                <a routerLink="/" class="nav-link">Profile</a>
+                <a [routerLink]="'/profile/' + user.uid" class="nav-link">Profile</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
