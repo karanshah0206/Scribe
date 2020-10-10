@@ -13,9 +13,6 @@ export class EditProfileComponent implements OnInit {
   user: any = {};
 
   constructor(public router: Router, public activatedRoute: ActivatedRoute) {
-    if (firebase.auth().currentUser.uid != this.activatedRoute.snapshot.paramMap.get("id")) {
-      this.router.navigate(['/feed']);
-    }
     this.getProfile();
   }
 

@@ -13,7 +13,6 @@ export class FeedComponent implements OnInit {
   posts: any[] = [];
 
   constructor() {
-    firebase.firestore().settings({timestampsInSnapshots: true});
     this.user = firebase.auth().currentUser;
     this.getPosts();
   }
